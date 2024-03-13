@@ -8,13 +8,13 @@ class AdminNewsAddSerializers(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['theme','images','body','date','time','pk','viewers']
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['theme'] = to_cyrillic(representation['theme'])
-            representation['body'] = to_cyrillic(representation['body'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['theme'] = to_cyrillic(representation['theme'])
+    #         representation['body'] = to_cyrillic(representation['body'])
+    #     return representation
 
 
 class UserNewListSerializer(serializers.ModelSerializer):
@@ -23,12 +23,12 @@ class UserNewListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = ['theme','images','date','time','pk','viewers']
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['theme'] = to_cyrillic(representation['theme'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['theme'] = to_cyrillic(representation['theme'])
+    #     return representation
 
 
 
@@ -53,13 +53,13 @@ class UserGetListRecommendSer(serializers.ModelSerializer):
     class Meta:
         model = Recommandation
         fields = ['pk','title','body','image']
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['title'] = to_cyrillic(representation['title'])
-            representation['body'] = to_cyrillic(representation['body'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['title'] = to_cyrillic(representation['title'])
+    #         representation['body'] = to_cyrillic(representation['body'])
+    #     return representation
 
 
     
