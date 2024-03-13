@@ -42,13 +42,13 @@ class SubCategoryListByIdSer(serializers.ModelSerializer):
         fields = ['name', 'parent', "parent_name", 'pk','count_announce']
     def get_count_announce(self,obj):
         return AnnouncementModel.objects.filter(subcategory=obj.pk, status='published').count()
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['name'] =to_cyrillic(representation['name'])
-            representation['parent_name'] = to_cyrillic(representation['parent_name'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['name'] =to_cyrillic(representation['name'])
+    #         representation['parent_name'] = to_cyrillic(representation['parent_name'])
+    #     return representation
 
 class CreateParamsSerializer(serializers.ModelSerializer):
     pk = serializers.ReadOnlyField(read_only=True)
@@ -146,12 +146,12 @@ class UserGetListCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CreateCategoryModel
         fields = ['pk','name','icon']
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['name'] =to_cyrillic(representation['name'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['name'] =to_cyrillic(representation['name'])
+    #     return representation
 
 
 
@@ -162,13 +162,13 @@ class UserGetListAnnounceSerializer(serializers.ModelSerializer):
         model = AnnouncementModel
         fields = ['pk', 'images', 'title', 'time', 'date', 'district', 'viewers', 'likers_count',
                   'price', 'currency', 'location', 'is_top', 'user', 'user_controller', 'kelishuv']
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        if user.language == 'cyrill':
-            representation['title'] =to_cyrillic(str(representation['title']))
-            representation['currency'] = to_cyrillic(representation['currency'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     if user.language == 'cyrill':
+    #         representation['title'] =to_cyrillic(str(representation['title']))
+    #         representation['currency'] = to_cyrillic(representation['currency'])
+    #     return representation
 
     def get_likers_count(self,obj):
         return obj.likers.all().count()
@@ -216,33 +216,33 @@ class UserGetAnnounceById(serializers.ModelSerializer):
         if not list(is_null):
             return False
         return True
-    def to_representation(self, instance):
-        user = self.context['request'].user
-        representation = super().to_representation(instance)
-        representation['title'] =to_cyrillic(representation['title'])
-        representation['category'] = to_cyrillic(representation['category'])
-        representation['body'] = to_cyrillic(representation['body'])
-        representation['subcategory_name'] = to_cyrillic(representation['subcategory_name'])
-        representation['contact_name'] = to_cyrillic(representation['contact_name'])
-        representation['title'] = to_cyrillic(representation['title'])
-        representation['currency'] = to_cyrillic(representation['currency'])
-        return representation
+    # def to_representation(self, instance):
+    #     user = self.context['request'].user
+    #     representation = super().to_representation(instance)
+    #     representation['title'] =to_cyrillic(representation['title'])
+    #     representation['category'] = to_cyrillic(representation['category'])
+    #     representation['body'] = to_cyrillic(representation['body'])
+    #     representation['subcategory_name'] = to_cyrillic(representation['subcategory_name'])
+    #     representation['contact_name'] = to_cyrillic(representation['contact_name'])
+    #     representation['title'] = to_cyrillic(representation['title'])
+    #     representation['currency'] = to_cyrillic(representation['currency'])
+    #     return representation
 
 class ParamsValSer(serializers.Serializer):
     name = serializers.ReadOnlyField(source='params.name')
     values = serializers.CharField(source = 'integer')
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['name'] = to_cyrillic(representation['name'])
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     representation['name'] = to_cyrillic(representation['name'])
+    #     return representation
 class ParamsValSerSt(serializers.Serializer):
     name = serializers.ReadOnlyField(source='params.name')
     values = serializers.ReadOnlyField(source = 'string')
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['name'] = to_cyrillic(representation['name'])
-        representation['values'] = to_cyrillic(representation['values'])
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     representation['name'] = to_cyrillic(representation['name'])
+    #     representation['values'] = to_cyrillic(representation['values'])
+    #     return representation
 
 class UserUpdateAnnouncementSer(serializers.ModelSerializer):
     images= serializers.ReadOnlyField()
