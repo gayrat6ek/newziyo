@@ -334,10 +334,12 @@ class ChatView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     def perform_create(self, serializer):
         serializer.save(from_user = self.request.user)
+        
         return super().perform_create(serializer)
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         response.data = {'success':True,'data':response.data}
+        
         return response
 
 

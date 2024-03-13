@@ -86,32 +86,32 @@ WSGI_APPLICATION = 'ziyovuddin.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": env('DB_NAME'),
+#         "USER": env('DB_USER'),
+#         "PASSWORD": env('PASSWORD'),
+#         "HOST":env('DB_HOST'),
+#         "PORT": "5432",
+#     }
+
+# }
+
+
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env('DB_NAME'),
-        "USER": env('DB_USER'),
-        "PASSWORD": env('PASSWORD'),
-        "HOST":env('DB_HOST'),
-        "PORT": "5432",
-    }
-
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': env('DB_NAME'),
+       'USER': env('DB_USER'),
+       'HOST': env('DB_HOST'),
+       'PASSWORD': env('PASSWORD'),
+       'PORT': '3306',
+       'OPTIONS': {
+           'charset': 'utf8mb4',
+       },
+   }
 }
-
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': env('DB_NAME'),
-#        'USER': env('DB_USER'),
-#        'HOST': env('DB_HOST'),
-#        'PASSWORD': env('PASSWORD'),
-#        'PORT': '3306',
-#        'OPTIONS': {
-#            'charset': 'utf8mb4',
-#        },
-#    }
-#}
 
 
 CORS_ALLOW_HEADERS = [

@@ -310,7 +310,7 @@ data = [
     {'region': 'Namangan viloyati', 'district': [
         'Chartak', 'Chust', 'Kosonsoy', 'Namangan', 'Norin', 'Pop', 'To`raqo`rg`on', 'Uychi', 'Yangiqo`rg`on']},
     {'region': 'Navoiy viloyati', 'district': [
-        'Khatirchi', 'Karmana', 'Konimekh', 'Navbahor', 'Nurota', 'Tomdi', 'Uchquduq']},
+        'Xatirchi', 'Karmana', 'Konimeh', 'Navbahor', 'Nurota', 'Tomdi', 'Uchquduq']},
     {'region': 'Qashqadaryo viloyati', 'district': ['Chiroqchi', 'Dehqonobod', 'G`uzor', 'Kamashi',
         'Kasbi', 'Kitob', 'Koson', 'Muborak', 'Nishon', 'Qarshi', 'Shaxrisabz', 'Yakkabog`']},
     {'region': 'Samarqand viloyati', 'district': ['Bulung`ur','Oqdaryo', 'Ishtixon', 'Jomboy', 'Kattaqo`rg`on',
@@ -349,10 +349,10 @@ class UserGetListDistrict(generics.ListAPIView):
     serializer_class = UserGetListRecommendSer
     permission_classes = [permissions.IsAuthenticated]
     def list(self, request, *args, **kwargs):
-        if self.request.user.language == 'cyrill':
-            response = {'success':True,'data':datacyrill}
-        else:
-            response = {'success':True,'data':data}
+        # if self.request.user.language == 'cyrill':
+        #     response = {'success':True,'data':datacyrill}
+        # else:
+        response = {'success':True,'data':data}
         return Response(response,content_type='application/json; charset=utf-8')
 
 
